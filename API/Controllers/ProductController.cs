@@ -1,8 +1,7 @@
 ﻿namespace API.Controllers
 {
-    using Core.Entities;
-    using Core.Interfaces;
-
+    using Domain.Entities;
+    using Domain.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
