@@ -1,5 +1,11 @@
-﻿namespace Application.Products.Queries.GetProduct;
+﻿using FluentValidation;
 
-public class Class1
+namespace Application.Products.Queries.GetProduct;
+
+public class GetProductQueryValidator : AbstractValidator<GetProductQuery>
 {
+    public GetProductQueryValidator()
+    {
+        RuleFor(x => x.Id).NotNull();
+    }
 }

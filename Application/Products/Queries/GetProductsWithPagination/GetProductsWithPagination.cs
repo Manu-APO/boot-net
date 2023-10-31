@@ -32,6 +32,6 @@ public class
         return await _context.Products
             .OrderBy(p => p.Name)
             .ProjectTo<ProductDto>(_mapper.ConfigurationProvider)
-            .PaginatedListAsync(request.PageNumber, request.PageSize)
+            .PaginatedListAsync(request.PageNumber, request.PageSize);
     }
 }

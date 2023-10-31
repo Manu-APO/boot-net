@@ -1,4 +1,5 @@
-﻿using Application.Products.Queries.GetProductsWithPagination;
+﻿using Application.Products.Queries.GetProduct;
+using Application.Products.Queries.GetProductsWithPagination;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,10 +25,10 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Product>> GetById(int id)
+    public async Task<ActionResult<Product>> GetById(GetProductQuery request)
     {
-        var searchedProduct = await this.productRepository.GetByIdAsync(id);
+        var product = await _mediator.Send(request);
 
-        return Ok(searchedProduct);
+        return Ok(product);
     }
 }
