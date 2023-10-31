@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Products.Queries.GetProductsWithPagination;
+namespace Application.Products.Queries.GetProduct;
 
 public class ProductDto
 {

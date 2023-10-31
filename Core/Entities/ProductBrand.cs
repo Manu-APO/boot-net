@@ -1,8 +1,6 @@
 ﻿namespace Domain.Entities;
 
-using Domain.Common;
-
-public class ProductBrand : BaseAuditableEntity<Guid>
+public class ProductBrand : BaseAuditableEntity
 {
     public string Name { get; set; }
 }

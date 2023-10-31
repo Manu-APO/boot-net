@@ -1,6 +1,5 @@
-﻿
+﻿namespace API;
 
-namespace Microsoft.Extensions.DependencyInjection;
 public static class DependencyInjection
 {
     public static IServiceCollection AddWebServices(this IServiceCollection services)
@@ -41,21 +40,19 @@ public static class DependencyInjection
                 sp.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
 
             configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
-
         });
 
         return services;
     }
 
-    public static IServiceCollection AddKeyVaultIfConfigured(this IServiceCollection services, ConfigurationManager configuration)
+    public static IServiceCollection AddKeyVaultIfConfigured(this IServiceCollection services,
+        ConfigurationManager configuration)
     {
         var keyVaultUri = configuration["KeyVaultUri"];
         if (!string.IsNullOrWhiteSpace(keyVaultUri))
-        {
             configuration.AddAzureKeyVault(
                 new Uri(keyVaultUri),
                 new DefaultAzureCredential());
-        }
 
         return services;
     }

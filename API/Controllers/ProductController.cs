@@ -1,34 +1,33 @@
-﻿namespace API.Controllers
+﻿using Application.Products.Queries.GetProductsWithPagination;
+using Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+
+namespace API.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductController : ControllerBase
 {
-    using Domain.Entities;
-    using Domain.Interfaces;
-    using Microsoft.AspNetCore.Mvc;
+    private readonly IMediator _mediator;
 
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductController : ControllerBase
+    public ProductController(IMediator mediator)
     {
-        private readonly IProductRepository productRepository;
+        _mediator = mediator;
+    }
 
-        public ProductController(IProductRepository productRepository)
-        {
-            this.productRepository = productRepository;
-        }
+    [HttpGet]
+    public async Task<ActionResult<List<Product>>> GetAll()
+    {
+        var products = await _mediator.Send(new GetProductsWithPaginationQuery());
 
-        [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetAll()
-        {
-            var products = await this.productRepository.GetAllAsync();
+        return Ok(products);
+    }
 
-            return this.Ok(products);
-        }
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Product>> GetById(int id)
+    {
+        var searchedProduct = await this.productRepository.GetByIdAsync(id);
 
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Product>> GetById(int id)
-        {
-            var searchedProduct = await this.productRepository.GetByIdAsync(id);
-
-            return this.Ok(searchedProduct);
-        }
+        return Ok(searchedProduct);
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace Domain.Common;
+﻿using System.Data;
 
-using System.Data;
+namespace Domain.Common;
 
-public abstract class BaseAuditableEntity<T> : BaseEntity<T>
+public abstract class BaseAuditableEntity : BaseEntity
 {
     public DateTimeOffset Created { get; set; }
 

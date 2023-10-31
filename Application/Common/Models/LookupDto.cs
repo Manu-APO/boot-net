@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Products.Queries.GetProductsWithPagination;
+namespace Application.Common.Models;
 
-public class ProductDto
+public class LookupDto
 {
-    public Guid Id { get; init; }
+    public int Id { get; init; }
 
     public string? Name { get; init; }
 
@@ -13,7 +13,7 @@ public class ProductDto
     {
         public Mapping()
         {
-            CreateMap<Product, ProductDto>();
+            CreateMap<Product, LookupDto>();
         }
     }
 }

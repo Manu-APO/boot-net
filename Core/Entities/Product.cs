@@ -1,8 +1,6 @@
 ﻿namespace Domain.Entities;
 
-using Domain.Common;
-
-public sealed class Product : BaseAuditableEntity<Guid>
+public sealed class Product : BaseAuditableEntity
 {
     public string Description { get; set; }
 

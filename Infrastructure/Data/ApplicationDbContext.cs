@@ -1,25 +1,23 @@
-﻿namespace Infrastructure.Data;
-
-using System.Reflection;
-
+﻿using System.Reflection;
 using Application.Common.Interfaces;
-
 using Domain.Entities;
-
 using Infrastructure.Identity;
-
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+namespace Infrastructure.Data;
+
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
 
-    public DbSet<ProductBrand> ProductBrands { get; set; }
+    public DbSet<ProductBrand> ProductBrands => Set<ProductBrand>();
 
-    public DbSet<Product> Products { get; set; }
+    public DbSet<Product> Products => Set<Product>();
 
-    public DbSet<ProductType> ProductTypes { get; set; }
+    public DbSet<ProductType> ProductTypes => Set<ProductType>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
